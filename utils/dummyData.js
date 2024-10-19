@@ -1,0 +1,31 @@
+export const generateDummyRides = () => [
+  {
+    id: '1',
+    userId: 'Morgan Stones Jackman',
+    driverId: null,
+    pickupLocation: {latitude: 37.7749, longitude: -122.4194},
+    destination: {latitude: 37.8044, longitude: -122.2712},
+    pickupLocationName: '23 George Lane',
+    dropLocation: '7th Street, Pink Avenue',
+    totalFair: 12,
+    profilePic: require('../assets/images/ProfilePic1.png'),
+    status: 'pending',
+    pickupTime: new Date(),
+    timestamp: new Date(),
+  },
+  {
+    id: '2',
+    userId: 'Henry Walker Dust',
+    driverId: null,
+    pickupLocation: {latitude: 37.7849, longitude: -122.4094},
+    destination: {latitude: 37.7944, longitude: -122.2812},
+    pickupLocationName: '24, 9th Harbour Lane',
+
+    dropLocation: '8th Street, Blue Avenue',
+    totalFair: 15,
+    profilePic: require('../assets/images/ProfilePic2.png'),
+    status: 'pending',
+    pickupTime: new Date(),
+    timestamp: new Date(),
+  },
+];
