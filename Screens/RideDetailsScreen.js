@@ -33,7 +33,7 @@ const RideDetailsScreen = () => {
         </View>
         <View style={styles.detailContainer}>
           <Text style={styles.labelText}>Status:</Text>
-          <Text style={styles.infoText}>{selectedRide?.status}</Text>
+          <Text style={styles.fareText}>{selectedRide?.status}</Text>
         </View>
         <View style={styles.detailContainer}>
           <Text style={styles.labelText}>Total Fare:</Text>

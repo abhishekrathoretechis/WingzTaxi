@@ -17,6 +17,7 @@ import {
   updateRideStatus,
 } from '../redux/rideSlice';
 import {generateDummyRides} from '../utils/dummyData';
+import {responsiveScreenHeight} from 'react-native-responsive-dimensions';
 
 const GOOGLE_MAPS_APIKEY = 'AIzaSyBNi9uhlK41L-wwLOntegDgKkfxMjjvvGc'; // Replace with your actual Google Maps API key
 
@@ -73,7 +74,7 @@ const HomeScreen = ({navigation}) => {
           <Marker key={ride.id} coordinate={ride.pickupLocation}>
             <Callout onPress={() => handleRideSelect(ride)}>
               <View>
-                <Text>{ride.userId}</Text>
+                <Text style={styles.nameText}>{ride.userId}</Text>
               </View>
             </Callout>
           </Marker>
@@ -172,7 +173,7 @@ const styles = StyleSheet.create({
   },
   profileContainer: {
     alignItems: 'center',
-    marginBottom: 10,
+    marginBottom: responsiveScreenHeight(1),
   },
   profileImage: {
     width: 70,
@@ -189,7 +190,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginBottom: 10,
+    marginBottom: responsiveScreenHeight(1),
   },
   labelText: {
     fontSize: 18,
@@ -209,8 +210,7 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    marginTop: 5,
-    marginBottom: 10,
+    marginTop: responsiveScreenHeight(1),
   },
   acceptButton: {
     backgroundColor: '#32CD32', // Green button
@@ -233,5 +233,10 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 18,
     fontFamily: 'Roboto-Bold',
+  },
+  nameText: {
+    color: 'black',
+    fontSize: 18,
+    fontFamily: 'Roboto-Medium',
   },
 });
