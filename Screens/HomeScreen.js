@@ -238,4 +238,10 @@ const styles = StyleSheet.create({
     fontFamily: 'Roboto-Bold',
     color: '#fff',
   },
+  nameText: {
+    fontSize: 16,
+    fontFamily: 'Roboto-Medium',
+    color: 'black',
+    textAlign: 'center',
+  },
 });
