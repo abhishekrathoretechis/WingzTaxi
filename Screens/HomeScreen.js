@@ -17,7 +17,10 @@ import {
   updateRideStatus,
 } from '../redux/rideSlice';
 import {generateDummyRides} from '../utils/dummyData';
-import {responsiveScreenHeight} from 'react-native-responsive-dimensions';
+import {
+  responsiveScreenHeight,
+  responsiveScreenWidth,
+} from 'react-native-responsive-dimensions';
 
 const GOOGLE_MAPS_APIKEY = 'AIzaSyBNi9uhlK41L-wwLOntegDgKkfxMjjvvGc'; // Replace with your actual Google Maps API key
 
@@ -53,7 +56,7 @@ const HomeScreen = ({navigation}) => {
   return (
     <View style={{flex: 1}}>
       <MapView
-        style={{flex: showModal ? 0.7 : 1}}
+        style={{flex: showModal ? 0.68 : 1}}
         region={{
           latitude: driverLocation?.latitude || 37.7749,
           longitude: driverLocation?.longitude || -122.4194,
@@ -105,19 +108,22 @@ const HomeScreen = ({navigation}) => {
               style={styles.profileImage}
             />
           </View>
-          <View style={styles.detailContainer}>
-            <Text style={styles.labelText}>Name: </Text>
-            <Text style={styles.infoText}>{selectedRide?.userId}</Text>
-          </View>
 
-          <View style={styles.detailContainer}>
-            <Text style={styles.labelText}>Drop Location: </Text>
-            <Text style={styles.dropText}>{selectedRide?.dropLocation}</Text>
-          </View>
+          <View style={styles.detailsWrapper}>
+            <View style={styles.detailContainer}>
+              <Text style={styles.labelText}>Name:</Text>
+              <Text style={styles.infoText}>{selectedRide?.userId}</Text>
+            </View>
 
-          <View style={styles.detailContainer}>
-            <Text style={styles.labelText}>Total Fare: </Text>
-            <Text style={styles.fareText}>${selectedRide?.totalFair}</Text>
+            <View style={styles.detailContainer}>
+              <Text style={styles.labelText}>Drop Location:</Text>
+              <Text style={styles.infoText}>{selectedRide?.dropLocation}</Text>
+            </View>
+
+            <View style={styles.detailContainer}>
+              <Text style={styles.labelText}>Total Fare:</Text>
+              <Text style={styles.fareText}>${selectedRide?.totalFair}</Text>
+            </View>
           </View>
 
           <View style={styles.buttonContainer}>
@@ -133,7 +139,7 @@ const HomeScreen = ({navigation}) => {
                 setShowModal(false);
                 navigation.navigate('RideDetailsScreen');
               }}>
-              <Text style={styles.acceptText}>Accept</Text>
+              <Text style={styles.buttonText}>Accept</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
@@ -147,7 +153,7 @@ const HomeScreen = ({navigation}) => {
                 );
                 setShowModal(false);
               }}>
-              <Text style={styles.rejectText}>Reject</Text>
+              <Text style={styles.buttonText}>Reject</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -160,83 +166,76 @@ export default HomeScreen;
 
 const styles = StyleSheet.create({
   modalContainer: {
-    flex: 0.3,
-    backgroundColor: '#f5f5f5',
+    flex: 0.35,
+    backgroundColor: '#fff',
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     padding: 20,
+    elevation: 10,
     shadowColor: '#000',
-    shadowOffset: {width: 0, height: 2},
-    shadowOpacity: 0.2,
-    shadowRadius: 5,
-    elevation: 3,
+    shadowOffset: {width: 0, height: 5},
+    shadowOpacity: 0.25,
+    shadowRadius: 10,
   },
   profileContainer: {
     alignItems: 'center',
     marginBottom: responsiveScreenHeight(1),
   },
   profileImage: {
-    width: 70,
-    height: 70,
-    borderRadius: 35,
-    marginBottom: 8,
+    width: 80,
+    height: 80,
+    borderRadius: 40,
+    borderWidth: 3,
+    borderColor: '#00BFFF',
   },
-  infoText: {
-    fontSize: 20,
-    fontFamily: 'Roboto-Bold',
-    color: 'darkslategray',
+  detailsWrapper: {
+    // marginVertical: 5,
   },
   detailContainer: {
     flexDirection: 'row',
-    alignItems: 'center',
     justifyContent: 'space-between',
-    marginBottom: responsiveScreenHeight(1),
+    marginVertical: responsiveScreenHeight(0.8),
+    borderBottomWidth: 1,
+    borderBottomColor: '#eee',
+    paddingBottom: 5,
   },
   labelText: {
-    fontSize: 18,
+    fontSize: 16,
     fontFamily: 'Roboto-Bold',
-    color: 'black',
+    color: '#555',
   },
-  dropText: {
-    fontSize: 18,
+  infoText: {
+    fontSize: 16,
     fontFamily: 'Roboto-Medium',
-    color: 'gray',
+    color: '#333',
   },
   fareText: {
-    fontSize: 18,
-    fontFamily: 'Roboto-Medium',
-    color: '#32CD32', // Green color for fare
+    fontSize: 16,
+    fontFamily: 'Roboto-Bold',
+    color: '#32CD32',
   },
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    marginTop: responsiveScreenHeight(1),
+    marginTop: responsiveScreenHeight(0.5),
   },
   acceptButton: {
-    backgroundColor: '#32CD32', // Green button
-    paddingVertical: 10,
-    paddingHorizontal: 30,
-    borderRadius: 10,
+    backgroundColor: '#32CD32',
+    paddingVertical: 12,
+    paddingHorizontal: 25,
+    borderRadius: 8,
+    elevation: 3,
   },
   rejectButton: {
-    backgroundColor: '#FF6347', // Red button
-    paddingVertical: 10,
-    paddingHorizontal: 30,
-    borderRadius: 10,
+    backgroundColor: '#FF6347',
+    paddingVertical: 12,
+    paddingHorizontal: 25,
+    borderRadius: 8,
+    elevation: 3,
   },
-  acceptText: {
-    color: 'white',
-    fontSize: 18,
+  buttonText: {
+    fontSize: 16,
     fontFamily: 'Roboto-Bold',
-  },
-  rejectText: {
-    color: 'white',
-    fontSize: 18,
-    fontFamily: 'Roboto-Bold',
-  },
-  nameText: {
-    color: 'black',
-    fontSize: 18,
-    fontFamily: 'Roboto-Medium',
+    color: '#fff',
   },
 });
